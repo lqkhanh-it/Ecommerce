@@ -25,11 +25,24 @@ var vietnamRoutes = require("./routes/vietnam");
 var todosRoutes = require("./routes/todos");
 var noticeRoutes = require("./routes/notice");
 
-mongoose.connect(
-  "mongodb+srv://lqkhanh:lqkhanh@cluster.fcaom.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true, rejectUnauthorized: false }
-);
-mongoose.set("useFindAndModify", false);
+mongoose
+  .connect(
+    "mongodb+srv://lqkhanh:lqkhanh@cluster.fcaom.mongodb.net/ecommerce?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      rejectUnauthorized: false,
+    }
+  )
+  .then((e) => {
+    console.log("mongodb is connected");
+    console.log(e);
+  })
+  .catch((error) => {
+    console.log("mondb not connected");
+    console.log(error);
+  });
+// mongoose.set("useFindAndModify", false);
 
 var cors = require("cors");
 app.use(bodyParser.json());

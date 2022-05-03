@@ -32,6 +32,7 @@ transporter.verify(function (error, success) {
 
 module.exports.index = async function (req, res) {
   var products = await Product.find();
+  console.log(products);
   res.json(products);
 };
 
@@ -46,7 +47,7 @@ module.exports.postProduct = async function (req, res) {
   const imgArr = [];
   req.files.map((item) => {
     imgArr.push(
-      `http://pe.heromc.net:4000/${item.path.split("/").slice(1).join("/")}`
+      `http://localhost:4000/${item.path.split("/").slice(1).join("/")}`
     );
   });
   const data = {
@@ -89,7 +90,7 @@ module.exports.postProduct = async function (req, res) {
       subject: "Sản phẩm mới tại SOBER SHOP",
       html:
         "<p>Sản phẩm mới nè</p>" +
-        `<img src="http://pe.heromc.net:4000/email/${emailList[i]._id}/${
+        `<img src="http://localhost:4000/email/${emailList[i]._id}/${
           emailInfo.sendedEmail[emailInfo.sendedEmail.length - 1].emailId
         }" alt=""></img>`,
     };
@@ -133,7 +134,7 @@ module.exports.updateProduct = async function (req, res) {
   if (req.files) {
     req.files.map((item) => {
       imgArr.push(
-        `http://pe.heromc.net:4000/${item.path.split("/").slice(1).join("/")}`
+        `http://localhost:4000/${item.path.split("/").slice(1).join("/")}`
       );
     });
   }
